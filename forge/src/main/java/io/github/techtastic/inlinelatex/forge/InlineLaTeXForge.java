@@ -1,6 +1,8 @@
 package io.github.techtastic.inlinelatex.forge;
 
 import dev.architectury.platform.forge.EventBuses;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -14,5 +16,7 @@ public final class InlineLaTeXForge {
 
         // Run our common setup.
         InlineLaTeX.init();
+
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> InlineLaTeX::initClient);
     }
 }
