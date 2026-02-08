@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/TechTastic/Inline-LaTeX/issues"
 license = "MIT"
 
 [[mods]]
@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Inline: LaTeX"
 authors = "TechTastic"
 description = '''
-Adding LaTex support to Inline!
+Adding LaTeX support to Inline!
 '''
 #logoFile = ""
 
@@ -31,5 +31,12 @@ side = "BOTH"
 modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.inlinelatex]]
+modId = "inline"
+mandatory = true
+versionRange = "[1.2.2,)"
 ordering = "AFTER"
 side = "BOTH"

@@ -43,13 +43,6 @@ subprojects {
                 includeGroup("com.terraformersmc")
             }
         }
-        maven {
-            name = "Jitpack"
-            url = "https://jitpack.io"
-            content {
-                includeGroup("org.scilab.forge")
-            }
-        }
     }
 
     loom {

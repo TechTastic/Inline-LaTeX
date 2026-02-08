@@ -3,13 +3,13 @@
   "id": "inlinelatex",
   "version": "${version}",
   "name": "Inline: LaTeX",
-  "description": "Adding LaTex support to Inline!",
+  "description": "Adding LaTeX support to Inline!",
   "authors": [
     "TechTastic"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/TechTastic/Inline-LaTeX",
+    "sources": "https://github.com/TechTastic/Inline-LaTeX"
   },
   "license": "MIT",
   "icon": "assets/inlinelatex/icon.png",
@@ -30,6 +30,7 @@
     "minecraft": "~1.20.1",
     "java": ">=17",
     "architectury": ">=9.2.14",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "inline": ">=1.2.2"
   }
 }

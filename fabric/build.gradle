@@ -37,8 +37,6 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     modImplementation("com.samsthenerd.inline:inline-fabric:$minecraft_version-$inline_version")
-
-    include(implementation("org.scilab.forge:jlatexmath:$jlatexmath_version"))
 }
 
 processResources {

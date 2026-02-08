@@ -12,6 +12,4 @@ dependencies {
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
 
     modCompileOnly("com.samsthenerd.inline:inline-common:$minecraft_version-$inline_version")
-
-    compileOnly("org.scilab.forge:jlatexmath:$jlatexmath_version")
 }
