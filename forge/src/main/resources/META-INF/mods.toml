@@ -11,7 +11,7 @@ authors = "TechTastic"
 description = '''
 Adding LaTeX support to Inline!
 '''
-#logoFile = ""
+logoFile = "icon.png"
 
 [[dependencies.inlinelatex]]
 modId = "forge"
