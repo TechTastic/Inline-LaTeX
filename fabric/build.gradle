@@ -1,5 +1,6 @@
 plugins {
     id 'com.gradleup.shadow'
+    id "me.modmuss50.mod-publish-plugin"
 }
 
 architectury {
@@ -54,4 +55,34 @@ shadowJar {
 
 remapJar {
     inputFile.set shadowJar.archiveFile
+}
+
+publishMods {
+    file = remapJar.archiveFile
+    additionalFiles.from(sourcesJar.archiveFile)
+    changelog = getLatestChangelog()
+    type = STABLE
+    modLoaders.add("fabric")
+    modLoaders.add("quilt")
+
+    version = project.version
+    displayName = "Inline: LaTeX - $project.version"
+
+    curseforge {
+        accessToken = System.getenv("CURSEFORGE_TOKEN") == null ? "" : System.getenv("CURSEFORGE_TOKEN")
+        projectId = "1457746"
+        minecraftVersions.add(minecraft_version)
+
+        requires("fabric-api", "architectury-api", "inline")
+    }
+
+    modrinth {
+        accessToken = System.getenv("MODRINTH_TOKEN") == null ? "" : System.getenv("MODRINTH_TOKEN")
+        projectId = "eHmR2ON3"
+        minecraftVersions.add(minecraft_version)
+
+        requires("fabric-api")
+        requires("architectury-api")
+        requires("inline")
+    }
 }
