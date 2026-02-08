@@ -4,30 +4,30 @@ loaderVersion = "[47,)"
 license = "MIT"
 
 [[mods]]
-modId = "patchematical"
+modId = "inlinelatex"
 version = "${version}"
-displayName = "Patchematical!"
+displayName = "Inline: LaTeX"
 authors = "TechTastic"
 description = '''
-Adding LaTex support to Patchouli!
+Adding LaTex support to Inline!
 '''
 #logoFile = ""
 
-[[dependencies.patchematical]]
+[[dependencies.inlinelatex]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.patchematical]]
+[[dependencies.inlinelatex]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.patchematical]]
+[[dependencies.inlinelatex]]
 modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"

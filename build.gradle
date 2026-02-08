@@ -33,7 +33,7 @@ subprojects {
         maven {
             url = 'https://maven.blamejared.com'
             content {
-                includeGroup("vazkii.patchouli")
+                includeGroup("com.samsthenerd.inline")
             }
         }
         maven {

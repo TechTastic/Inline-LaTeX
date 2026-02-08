@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "patchematical",
+  "id": "inlinelatex",
   "version": "${version}",
-  "name": "Patchematical!",
-  "description": "Adding LaTex support to Patchouli!",
+  "name": "Inline: LaTeX",
+  "description": "Adding LaTex support to Inline!",
   "authors": [
     "TechTastic"
   ],
@@ -12,18 +12,18 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "MIT",
-  "icon": "assets/patchematical/icon.png",
+  "icon": "assets/inlinelatex/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.techtastic.patchematical.fabric.PatchematicalFabric"
+      "io.github.techtastic.inlinelatex.fabric.InlineLaTeXFabric"
     ],
     "client": [
-      "io.github.techtastic.patchematical.fabric.client.PatchematicalFabricClient"
+      "io.github.techtastic.inlinelatex.fabric.client.InlineLaTeXFabricClient"
     ]
   },
   "mixins": [
-    "patchematical.mixins.json"
+    "inlinelatex.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.18.4",

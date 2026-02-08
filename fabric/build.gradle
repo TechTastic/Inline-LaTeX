@@ -36,7 +36,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modImplementation("vazkii.patchouli:Patchouli:$minecraft_version-$patchouli_version-FABRIC")
+    modImplementation("com.samsthenerd.inline:inline-fabric:$minecraft_version-$inline_version")
 
     include(implementation("org.scilab.forge:jlatexmath:$jlatexmath_version"))
 }

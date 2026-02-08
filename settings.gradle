@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'patchematical'
+rootProject.name = 'inlinelatex'
 
 include 'common'
 include 'fabric'
