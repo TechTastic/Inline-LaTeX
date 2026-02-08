@@ -52,6 +52,6 @@ public final class InlineLaTeX {
             case "+" -> "\\LARGE";
             default -> "\\small";
         };
-        return LATEX_API_URL + URLEncoder.encode("\\dpi{300}\\fg{FFFFFF}%s%s".formatted(size, formula), StandardCharsets.UTF_8);
+        return LATEX_API_URL + URLEncoder.encode("\\dpi{300}\\fg{FFFFFF}%s\\\\%s".formatted(size, formula), StandardCharsets.UTF_8);
     }
 }
