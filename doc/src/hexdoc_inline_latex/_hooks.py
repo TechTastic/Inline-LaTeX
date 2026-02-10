@@ -79,7 +79,7 @@ class InlinelatexModPlugin(ModPlugin):
     def post_render_book(self, template_args: dict[str, Any], output_dir: Path) -> None:
         """Called once per language, after all book files for that language are rendered."""
         site_path = str(output_dir / "index.html")
-        with open(site_path, "r") as f:
+        with open(site_path, "r", errors="ignore") as f:
             site = f.read()
         if site:
             site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^\]]+)\]', replace_latex, site)
