@@ -18,15 +18,16 @@ def replace_latex(match) -> str:
 	full = match.group()
 	delimiter = match.group(1)
 	formula = match.group(2)
-	size = match delimiter:
+	size = ""
+	match delimiter:
 		case ",":
-			"\\tiny"
+			size = "\\tiny"
 		case "!":
-			"\\large"
+			size = "\\large"
 		case "+":
-			"\\LARGE"
+			size = "\\LARGE"
 		case _:
-			"\\small"
+			size = "\\small"
 	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{full}\">"
 
 
