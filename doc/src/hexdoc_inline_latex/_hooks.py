@@ -31,7 +31,7 @@ def replace_latex(match) -> str:
 			size = "\\LARGE"
 		case _:
 			size = "\\small"
-	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{full}\">"
+	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\{formula}\" alt=\"{full}\">"
 
 
 class InlinelatexPlugin(ModPluginImpl):
