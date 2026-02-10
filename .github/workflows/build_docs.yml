@@ -1,0 +1,57 @@
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      publish:
+        type: boolean
+        required: true
+        description: "Publish Plugin"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --locked --no-dev
+
+      - name: Build
+        run: uv build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: python-build
+          path: dist
+          if-no-files-found: error
+
+  publish:
+    if: inputs.publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/hexdoc-inlinelatex
+    permissions:
+      id-token: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v6
+        with:
+          name: python-build
+          path: dist
+
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
