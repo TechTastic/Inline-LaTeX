@@ -386,7 +386,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "hexdoc", specifier = ">=1.1.0" }]
+requires-dist = [{ name = "hexdoc", specifier = ">=1!0.1.0a36" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "ruff" }]

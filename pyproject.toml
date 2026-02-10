@@ -35,7 +35,7 @@ key = "mod_version"
 # required
 [tool.hatch.metadata.hooks.gradle-properties]
 dependencies = [
-    { package="hexdoc", op=">=", py-version="1.0", key="hexdoc_version" },
+    "hexdoc>=1!0.1.0a36",
 ]
 
 # dev-only
