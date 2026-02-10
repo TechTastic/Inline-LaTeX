@@ -1,7 +1,6 @@
 from importlib.resources import Package
 from typing_extensions import override
 from typing import Any
-from pathlib import Path
 import re
 
 from hexdoc.plugin import (
@@ -78,7 +77,10 @@ class InlinelatexModPlugin(ModPlugin):
     @override
     def post_render_book(self, template_args: dict[str, Any], output_dir: Path) -> None:
         """Called once per language, after all book files for that language are rendered."""
-        site_path = output_dir / "index.html"
-        site = site_path.read_text(encoding='utf-8', errors='replace')
-        site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^\]]+)\]', replace_latex, site)
-        site_path.write_text(site)
+        site_path = output_dir + "/index.html"
+        with open(site_path, "r") as f:
+            site = f.read()
+        if site:
+            site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^\]]+)\]', replace_latex, site)
+            with open(site_path, "w") as f:
+                f.write(site)
