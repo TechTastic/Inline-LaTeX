@@ -1,5 +1,6 @@
 from importlib.resources import Package
 from typing_extensions import override
+import Any
 
 from hexdoc.plugin import (
     HookReturn,
