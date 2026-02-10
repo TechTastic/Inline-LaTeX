@@ -74,8 +74,8 @@ class InlinelatexModPlugin(ModPlugin):
 
     @override
     def post_render_book(self, template_args: dict[str, Any], output_dir: Path) -> None:
-		"""Called once per language, after all book files for that language are rendered."""
-		site_path = output_dir / "index.html"
-		site = site_path.read_text()
-		site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^]]+)\]', replace_latex, site)
-		site_path.write_text(site)
+        """Called once per language, after all book files for that language are rendered."""
+        site_path = output_dir / "index.html"
+        site = site_path.read_text()
+        site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^]]+)\]', replace_latex, site)
+        site_path.write_text(site)
