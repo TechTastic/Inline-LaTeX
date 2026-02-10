@@ -69,7 +69,7 @@ class InlinelatexModPlugin(ModPlugin):
     
     @override
     def jinja_template_root(self) -> tuple[Package, str]:
-        return hexdoc_inlinelatex, "_templates"
+        return hexdoc_inline_latex, "_templates"
 
     @override
     def post_render_book(self, template_args: dict[str, Any], output_dir: Path) -> None:
