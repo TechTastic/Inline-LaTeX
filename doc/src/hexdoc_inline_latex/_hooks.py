@@ -24,11 +24,13 @@ def replace_latex(match) -> str:
         case ",":
             size = "tiny"
         case "!":
-            size = "large"
+            size = None
         case "+":
-            size = "LARGE"
+            size = "large"
         case _:
             size = "small"
+    if not size:
+        return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\\\{formula}\" alt=\"{formula}\">"
     return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{formula}\">"
 
 
