@@ -18,9 +18,8 @@ from .__gradle_version__ import FULL_VERSION, GRADLE_VERSION
 from .__version__ import PY_VERSION
 
 def replace_latex(match) -> str:
-	delimiter = match.group(1)
-	formula = match.group(2)
-    size = ""
+    delimiter = match.group(1)
+    formula = match.group(2)
     match delimiter:
         case ",":
             size = "tiny"
@@ -30,7 +29,7 @@ def replace_latex(match) -> str:
             size = "LARGE"
         case _:
             size = "small"
-	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{formula}\">"
+    return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{formula}\">"
 
 
 class InlinelatexPlugin(ModPluginImpl):
