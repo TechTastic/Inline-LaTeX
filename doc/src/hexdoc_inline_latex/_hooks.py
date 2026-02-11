@@ -18,20 +18,8 @@ from .__gradle_version__ import FULL_VERSION, GRADLE_VERSION
 from .__version__ import PY_VERSION
 
 def replace_latex(match) -> str:
-	full = match.group()
-	delimiter = match.group(1)
-	formula = match.group(2)
-	size = ""
-	match delimiter:
-		case ",":
-			size = "tiny"
-		case "!":
-			size = "large"
-		case "+":
-			size = "LARGE"
-		case _:
-			size = "small"
-	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\{size}\\\\{formula}\" alt=\"{full}\">"
+	formula = match.group(1)
+	return f"<img src=\"https://latex.codecogs.com/png.latex?\\dpi{{300}}\\fg{{FFFFFF}}\\\\{formula}\" alt=\"{formula}\">"
 
 
 class InlinelatexPlugin(ModPluginImpl):
@@ -82,6 +70,6 @@ class InlinelatexModPlugin(ModPlugin):
         with open(site_path, "r", errors="ignore") as f:
             site = f.read()
         if site:
-            site = re.sub(r'\[(?:tex|latex|formula)([:;,!+])([^\]]+)\]', replace_latex, site)
+            site = re.sub(r'\[(?:tex|latex|formula)[:;,!+]([^\]]+)\]', replace_latex, site)
             with open(site_path, "w") as f:
                 f.write(site)

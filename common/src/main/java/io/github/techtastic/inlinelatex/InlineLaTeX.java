@@ -4,7 +4,10 @@ import com.samsthenerd.inline.api.InlineAPI;
 import com.samsthenerd.inline.api.client.InlineClientAPI;
 import com.samsthenerd.inline.api.data.SpriteInlineData;
 import com.samsthenerd.inline.api.matching.*;
+import com.samsthenerd.inline.impl.InlineStyle;
+import com.samsthenerd.inline.utils.SpriteUVRegion;
 import com.samsthenerd.inline.utils.URLSprite;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 
 import java.io.InputStream;
@@ -25,10 +28,10 @@ public final class InlineLaTeX {
             matchResult -> new InlineMatch.DataMatch(
                     new SpriteInlineData(
                             new URLSprite(
-                                    toURL(matchResult.group(1), matchResult.group(2)),
-                                    of("latex/" + matchResult.group().hashCode())
+                                    toURL(matchResult.group(2)),
+                                    of("latex/" + matchResult.group(2).hashCode())
                             ), true
-                    )
+                    ), InlineAPI.INSTANCE.withSizeModifier(Style.EMPTY, getSize(matchResult.group(1)))
             ),
             MatcherInfo.fromId(of("latex"))
     );
@@ -45,13 +48,16 @@ public final class InlineLaTeX {
         return new ResourceLocation(MOD_ID, path);
     }
 
-    public static String toURL(String delimiter, String formula) {
-        String size = switch (delimiter) {
-            case "," -> "\\tiny";
-            case "!" -> "\\large";
-            case "+" -> "\\LARGE";
-            default -> "\\small";
+    public static String toURL(String formula) {
+        return LATEX_API_URL + URLEncoder.encode("\\dpi{300}\\fg{FFFFFF}\\\\%s".formatted(formula), StandardCharsets.UTF_8);
+    }
+
+    public static double getSize(String delimiter) {
+        return switch (delimiter) {
+            case "," -> 0.75;
+            case "!" -> 1.5;
+            case "+" -> 2.0;
+            default -> 1.0;
         };
-        return LATEX_API_URL + URLEncoder.encode("\\dpi{300}\\fg{FFFFFF}%s\\\\%s".formatted(size, formula), StandardCharsets.UTF_8);
     }
 }
