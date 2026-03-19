@@ -4,18 +4,10 @@ import com.samsthenerd.inline.api.InlineAPI;
 import com.samsthenerd.inline.api.client.InlineClientAPI;
 import com.samsthenerd.inline.api.data.SpriteInlineData;
 import com.samsthenerd.inline.api.matching.*;
-import com.samsthenerd.inline.impl.InlineStyle;
-import com.samsthenerd.inline.utils.SpriteUVRegion;
 import com.samsthenerd.inline.utils.URLSprite;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
 public final class InlineLaTeX {
@@ -48,8 +40,30 @@ public final class InlineLaTeX {
         return new ResourceLocation(MOD_ID, path);
     }
 
+    public static String escapeURIPathParam(String input) {
+        StringBuilder resultStr = new StringBuilder();
+        for (char ch : input.toCharArray()) {
+            if (isUnsafe(ch)) {
+                resultStr.append('%');
+                resultStr.append(toHex(ch / 16));
+                resultStr.append(toHex(ch % 16));
+            } else {
+                resultStr.append(ch);
+            }
+        }
+        return resultStr.toString();
+    }
+
+    private static char toHex(int ch) {
+        return (char) (ch < 10 ? '0' + ch : 'A' + ch - 10);
+    }
+
+    private static boolean isUnsafe(char ch) {
+        return !("0123456789.-*_+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(ch) >= 0);
+    }
+
     public static String toURL(String formula) {
-        return LATEX_API_URL + URLEncoder.encode("\\dpi{300}\\fg{FFFFFF}\\\\%s".formatted(formula), StandardCharsets.UTF_8);
+        return LATEX_API_URL + escapeURIPathParam("\\dpi{300}\\fg{FFFFFF}\\\\%s".formatted(formula));
     }
 
     public static double getSize(String delimiter) {
