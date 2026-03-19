@@ -8,6 +8,8 @@ import com.samsthenerd.inline.utils.URLSprite;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
 public final class InlineLaTeX {
@@ -43,24 +45,15 @@ public final class InlineLaTeX {
     public static String escapeURIPathParam(String input) {
         StringBuilder resultStr = new StringBuilder();
         for (char ch : input.toCharArray()) {
-            if (isUnsafe(ch)) {
-                resultStr.append('%');
-                resultStr.append(toHex(ch / 16));
-                resultStr.append(toHex(ch % 16));
+            if (ch != ' ') {
+                resultStr.append(URLEncoder.encode(Character.toString(ch), StandardCharsets.UTF_8));
             } else {
-                resultStr.append(ch);
+                resultStr.append("%20");
             }
         }
         return resultStr.toString();
     }
 
-    private static char toHex(int ch) {
-        return (char) (ch < 10 ? '0' + ch : 'A' + ch - 10);
-    }
-
-    private static boolean isUnsafe(char ch) {
-        return !("0123456789.-*_+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(ch) >= 0);
-    }
 
     public static String toURL(String formula) {
         return LATEX_API_URL + escapeURIPathParam("\\dpi{300}\\fg{FFFFFF}\\\\%s".formatted(formula));
